@@ -117,6 +117,14 @@ export function Footer() {
     <footer className="foot">
       <p className="mono foot-kicker">End of section / {String(objects.length).padStart(3, '0')} objects held</p>
       <Link to="/archive" className="foot-cta" cursor="Enter">Enter the <em>Archive</em></Link>
+      <div className="foot-credit">
+        <p className="mono foot-kicker">Design</p>
+        <p className="foot-name">Sophie Khasanova</p>
+        <p className="foot-hire">
+          <span className="mono foot-kicker">Want a project like this?</span>
+          <a href="mailto:sophiekhasanovaa@gmail.com">sophiekhasanovaa@gmail.com</a>
+        </p>
+      </div>
       <div className="foot-base mono">
         <span>ARCHIVE 001</span>
         <span>Independent collection</span>
