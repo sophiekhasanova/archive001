@@ -158,6 +158,11 @@ em { font-style: italic; }
 .foot-kicker { color: var(--ash); }
 .foot-cta { display: block; margin: 24px 0 clamp(72px, 10vw, 150px); font: 400 clamp(54px, 13.2vw, 270px)/.92 var(--display); letter-spacing: -.045em; transition: color .7s var(--ease); }
 .foot-cta:hover { color: var(--oxide); }
+.foot-credit { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 10px 20px; align-items: baseline; padding: 18px 0 clamp(40px, 5vw, 72px); border-top: 1px solid var(--line); }
+.foot-name { font: italic 400 clamp(26px, 2.6vw, 40px)/1 var(--display); letter-spacing: -.02em; }
+.foot-hire { display: grid; gap: 8px; justify-items: start; }
+.foot-hire a { font: 300 clamp(18px, 1.6vw, 24px)/1.2 var(--body); border-bottom: 1px solid var(--line); padding-bottom: 3px; transition: color .5s var(--ease), border-color .5s var(--ease); }
+.foot-hire a:hover { color: var(--oxide); border-color: var(--oxide); }
 .foot-base { display: grid; grid-template-columns: 1fr 1fr 2fr auto; gap: 8px 20px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ash); }
 .foot-base a:hover { color: var(--bone); }
 
@@ -284,7 +289,8 @@ em { font-style: italic; }
   .prov-grid { grid-template-columns: 1fr; gap: 34px; }
   .prov-grid > div:nth-child(n) { margin-top: 0; }
   .prov-grid h3 { margin-top: 18px; }
-  .foot-base { grid-template-columns: 1fr; }
+  .foot-base, .foot-credit { grid-template-columns: 1fr; }
+  .foot-hire a { word-break: break-all; }
   .a-title { grid-column: 1 / span 8; }
   .a-count { grid-column: 9 / -1; flex-direction: column; align-items: flex-end; gap: 0; font-size: 44px; }
   .a-count small { font-size: 9px; }
