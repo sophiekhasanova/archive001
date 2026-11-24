@@ -51,11 +51,14 @@ export const images = {
 export type ImageKey = keyof typeof images
 
 const WIDTHS = [640, 960, 1400, 2000, 2800]
+// The archive's colour grade, applied by Unsplash's image service instead of a CSS filter
+// so the browser never repaints filtered images while scrolling. Grade local files before adding them.
+const GRADE = 'sat=-18&con=7&bri=-8'
 
 export function imageUrl(key: ImageKey, width = 1400): string {
   const image: ImageEntry = images[key]
   if (image.local) return image.local
-  return `https://images.unsplash.com/photo-${image.photo}?auto=format&fit=max&q=82&w=${Math.min(width, image.width)}`
+  return `https://images.unsplash.com/photo-${image.photo}?auto=format&fit=max&q=80&${GRADE}&w=${Math.min(width, image.width)}`
 }
 
 export function imageSrcSet(key: ImageKey): string | undefined {
