@@ -23,7 +23,7 @@ export function initSmoother() {
   smoother = ScrollSmoother.create({
     wrapper: '#smooth-wrapper',
     content: '#smooth-content',
-    smooth: 1.15,
+    smooth: 0.75,
     smoothTouch: false,
     ignoreMobileResize: true,
   })
