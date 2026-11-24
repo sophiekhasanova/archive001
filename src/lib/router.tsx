@@ -7,10 +7,14 @@ interface Location { path: Path; search: string }
 interface Router extends Location { navigate: (to: string) => void }
 
 const RouterContext = createContext<Router | null>(null)
-const readLocation = (): Location => ({
-  path: window.location.pathname.startsWith('/archive') ? '/archive' : '/',
-  search: window.location.search,
-})
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
+const toPath = (pathname: string): Path => {
+  const local = pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname
+  return local.startsWith('/archive') ? '/archive' : '/'
+}
+/** Turns an app path such as `/archive?c=art` into a real URL under the deploy base. */
+export const withBase = (to: string) => BASE + to
+const readLocation = (): Location => ({ path: toPath(window.location.pathname), search: window.location.search })
 
 function playShutter(label: string, swap: () => void, done: () => void) {
   const shutter = document.querySelector<HTMLElement>('.shutter')
@@ -48,9 +52,9 @@ export function RouterProvider({ children }: { children: ReactNode }) {
 
   const navigate = useCallback((to: string) => {
     const url = new URL(to, window.location.origin)
-    const next: Location = { path: url.pathname.startsWith('/archive') ? '/archive' : '/', search: url.search }
+    const next: Location = { path: toPath(url.pathname), search: url.search }
     if (next.path === current.current.path && next.search === current.current.search) { scrollToTop(); return }
-    change(next, url.pathname + url.search)
+    change(next, withBase(next.path + url.search))
   }, [change])
 
   useEffect(() => {
