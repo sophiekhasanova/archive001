@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, type MouseEvent } from 'react'
 import { objects } from '../data/objects'
 import { EASE, getEntranceDelay, gsap, reducedMotion, ScrollTrigger, setEntranceDelay } from '../lib/motion'
-import { useRouter } from '../lib/router'
+import { useRouter, withBase } from '../lib/router'
 import { useStore } from '../store/store'
 
 export function Link({ to, className, children, cursor }: { to: string; className?: string; children: React.ReactNode; cursor?: string }) {
@@ -11,7 +11,7 @@ export function Link({ to, className, children, cursor }: { to: string; classNam
     event.preventDefault()
     navigate(to)
   }
-  return <a href={to} className={className} onClick={onClick} data-cursor={cursor}>{children}</a>
+  return <a href={withBase(to)} className={className} onClick={onClick} data-cursor={cursor}>{children}</a>
 }
 
 export function Nav() {
